@@ -43,7 +43,9 @@
       You scored higher than 65% of the people who have taken these tests.
     </div>
 
-    <div class="card" style="width: 18rem" id="scoresContainer">Summary</div>
+    <div class="card" id="scoresContainer">
+      <div class="categories"></div>
+    </div>
 
     <div class="attribution">
       Challenge by
@@ -52,41 +54,43 @@
       >. Coded by <a href="#">Your Name Here</a>.
     </div>
     <script>
-      //Fetch data from json file
-      fetch("data.json")
+     fetch("data.json")
   .then((response) => response.json())
   .then((data) => {
     const scoresContainer = document.getElementById("scoresContainer");
+    const categoriesDiv = scoresContainer.querySelector(".categories");
 
-    // Loop through JSON data and create HTML elements
+    // Loop through JSON data and create sections for each category
     data.forEach((scoreItem) => {
-      const scoreDiv = document.createElement("div");
-      scoreDiv.classList.add("card");
-      scoreDiv.innerHTML = `
-        <h3>${scoreItem.category}</h3>
-        <p>Score: ${scoreItem.score}</p>
-        <img src="${scoreItem.icon}" alt="${scoreItem.category} Icon">
-      `;
+      const categorySection = document.createElement("div");
+      categorySection.classList.add("category");
 
       // Apply different background colors based on category
       switch (scoreItem.category) {
         case "Reaction":
-          scoreDiv.style.backgroundColor = "red";
+          categorySection.style.backgroundColor = "lightblue";
           break;
         case "Memory":
-          scoreDiv.style.backgroundColor = "lightyellow";
+          categorySection.style.backgroundColor = "lightgreen";
           break;
         case "Verbal":
-          scoreDiv.style.backgroundColor = "lightgreen";
+          categorySection.style.backgroundColor = "lightcoral";
           break;
         case "Visual":
-          scoreDiv.style.backgroundColor = "lightblue";
+          categorySection.style.backgroundColor = "lightyellow";
           break;
         default:
-          scoreDiv.style.backgroundColor = "gray"; // Default color for other categories
+          categorySection.style.backgroundColor = "gray";
       }
 
-      scoresContainer.appendChild(scoreDiv);
+      // Populate the section with category information
+      categorySection.innerHTML = `
+        <h3>${scoreItem.category}</h3>
+        <p>Score: ${scoreItem.score}</p>
+        <img src="${scoreItem.icon}" alt="${scoreItem.category} Icon">
+      `;
+      
+      categoriesDiv.appendChild(categorySection);
     });
   })
   .catch((error) => {

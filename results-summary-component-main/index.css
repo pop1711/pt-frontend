@@ -4,17 +4,16 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f5f5f5; /* Change this to your desired background color */
   }
 
   .card {
+    border: 1px solid #ccc;
     border: none;
     width: 18rem;
     text-align: center;
     padding: 20px;
     box-sizing: border-box;
-    border-radius: 8px;
-    color: white; /* Text color for better visibility */
+    color: white;
   }
 
   #left-side {
@@ -22,33 +21,4 @@
     border-radius: 8px;
     padding: 20px;
     box-sizing: border-box;
-  }
-
-  .card h3 {
-    margin-top: 0;
-  }
-
-  .card p {
-    margin-bottom: 10px;
-  }
-
-  /* Add your specific background colors for each category */
-.card[data-category="Reaction"] {
-    background-color: lightblue;
-  }
-  
-  .card[data-category="Memory"] {
-    background-color: lightgreen;
-  }
-  
-  .card[data-category="Verbal"] {
-    background-color: lightcoral;
-  }
-  
-  .card[data-category="Visual"] {
-    background-color: lightyellow;
-  }
-  
-  .card[data-category="Other"] {
-    background-color: gray;
   }
