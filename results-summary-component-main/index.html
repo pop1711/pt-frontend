@@ -54,24 +54,44 @@
     <script>
       //Fetch data from json file
       fetch("data.json")
-        .then((response) => response.json())
-        .then((data) => {
-          const scoresContainer = document.getElementById("scoresContainer");
+  .then((response) => response.json())
+  .then((data) => {
+    const scoresContainer = document.getElementById("scoresContainer");
 
-          // Loop through JSON data and create HTML elements
-          data.forEach((scoreItem) => {
-            const scoreDiv = document.createElement("div");
-            scoreDiv.innerHTML = `
-            <h3>${scoreItem.category}</h3>
-            <p>Score: ${scoreItem.score}</p>
-            <img src="${scoreItem.icon}" alt="${scoreItem.category} Icon">
-          `;
-            scoresContainer.appendChild(scoreDiv);
-          });
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-        });
+    // Loop through JSON data and create HTML elements
+    data.forEach((scoreItem) => {
+      const scoreDiv = document.createElement("div");
+      scoreDiv.classList.add("card");
+      scoreDiv.innerHTML = `
+        <h3>${scoreItem.category}</h3>
+        <p>Score: ${scoreItem.score}</p>
+        <img src="${scoreItem.icon}" alt="${scoreItem.category} Icon">
+      `;
+
+      // Apply different background colors based on category
+      switch (scoreItem.category) {
+        case "Reaction":
+          scoreDiv.style.backgroundColor = "red";
+          break;
+        case "Memory":
+          scoreDiv.style.backgroundColor = "lightyellow";
+          break;
+        case "Verbal":
+          scoreDiv.style.backgroundColor = "lightgreen";
+          break;
+        case "Visual":
+          scoreDiv.style.backgroundColor = "lightblue";
+          break;
+        default:
+          scoreDiv.style.backgroundColor = "gray"; // Default color for other categories
+      }
+
+      scoresContainer.appendChild(scoreDiv);
+    });
+  })
+  .catch((error) => {
+    console.error("Error fetching data:", error);
+  });
     </script>
 
     <script
